@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.action.extension" value="" />
+
+	<constant name="struts.custom.i18n.resources" value="global-messages" />
+
+	<constant name="struts.ui.theme" value="xhtml" />
+
+	<constant name="struts.devMode" value="false" />
+
+	<package name="mcss-tool-struts" namespace="/" extends="struts-default">
+
+		<action name="" class="com.messners.mcss.McssToolAction">
+			<result>/WEB-INF/jsp/tool.jsp</result>
+			<result name="error">/WEB-INF/jsp/tool.jsp</result>
+		</action>
+
+		<action name="eval" class="com.messners.mcss.McssToolAction">
+			<result>/WEB-INF/jsp/tool.jsp</result>
+			<result name="error">/WEB-INF/jsp/tool.jsp</result>
+		</action>
+
+		<action name="set-array-size" method="setsize"
+			class="com.messners.mcss.McssToolAction">
+			<result>/WEB-INF/jsp/tool.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

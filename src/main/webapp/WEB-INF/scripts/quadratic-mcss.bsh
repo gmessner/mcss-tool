@@ -1,0 +1,28 @@
+/**
+ * Quadratic Maximum Contiguous Subsequence Sum Algorithm
+ * seqStart and seqStop represent the actual best sequence, maxSum is the
+ * calculated sum for that sequence. Estimate of algorithm performance is
+ * O(n^2) where n is the size of the array.
+ */
+int seqStart = -1;
+int seqStop  = -1;
+int maxSum   = Integer.MIN_VALUE;
+
+for ( int i = 0; i < a.length; i++ ) {
+
+    int curSum = 0;
+    for ( int j = i; j < a.length; j++ ) {
+
+        curSum += a[j];
+        if (curSum > maxSum) {
+
+            maxSum   = curSum;
+            seqStart = i;
+            seqStop  = j;
+        }
+    }
+}
+
+print("Maximum Sub Sequence Sum: " + maxSum);
+print("Sub Sequence start index: " + seqStart);
+print("Sub Sequence stop index : " + seqStop); 

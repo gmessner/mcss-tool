@@ -1,0 +1,31 @@
+/**
+ * Linear Time Maximum Contiguous Subsequence Sum Algorithm
+ * seqStart and seqStop represent the actual best sequence, maxSum is the
+ * calculated sum for that sequence. Estimate of algorithm performance is
+ * O(n) where n is the size of the array.
+ */
+int seqStart = -1;
+int seqStop  = -1;
+int maxSum   = 0;
+int curSum   = 0;
+
+for ( int i = 0, j = 0; j < a.length; j++ ) {
+
+    curSum += a[j];
+    if (curSum > maxSum) {
+
+        maxSum   = curSum;
+        seqStart = i;
+        seqStop  = j;
+
+    } else if (curSum < 0) {
+
+        i = j + 1;
+        curSum = 0;
+    }
+}
+
+print("Maximum Sub Sequence Sum: " + maxSum);
+print("Sub Sequence start index: " + seqStart);
+print("Sub Sequence stop index : " + seqStop); 
+

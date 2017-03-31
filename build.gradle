@@ -1,0 +1,55 @@
+
+task wrapper(type: Wrapper) { gradleVersion = '3.4.1' }
+
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+project.version = '1.0'
+ 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile 'org.apache-extras.beanshell:bsh:2.0b6'
+    compile 'org.apache.struts:struts2-core:2.5.10.1'
+	compile 'org.apache.logging.log4j:log4j-core:2.8.1'
+    
+    testCompile 'junit:junit:4.12'
+}
+
+
+// Makes sure the build/docker directory is created 
+task createBuildDockerDir() {
+    outputs.dir file("$buildDir")
+    def dir = new File(project.buildDir, 'docker')
+    if (!dir.exists()) {
+        dir.mkdirs()
+    }
+}
+
+// Copy all the Docker assets in the project's src/main/docker directory and the created war file to the build directory
+task copyDockerAssets(type: Copy, dependsOn: [createBuildDockerDir, war] ) {
+    from 'src/main/docker'
+    from war.archivePath
+    into 'build/docker'
+}
+
+// Execute a docker build with the Dockerfile and assets copied into build/docker by copyAssets
+task dockerize(type: Exec, dependsOn: copyDockerAssets) {
+
+    logging.captureStandardOutput LogLevel.LIFECYCLE
+    logging.captureStandardError  LogLevel.ERROR
+    commandLine 'docker', 'build', '-t', project.name + ':' + project.version, "$buildDir/docker"
+}
+
+// Adds a latest tag to the versioned image created with dockerize
+task tagLatest(type: Exec, dependsOn: dockerize) {
+    commandLine 'docker', 'tag', project.name + ':' + project.version, project.name + ':latest'
+}
