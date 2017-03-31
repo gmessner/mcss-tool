@@ -1,7 +1,7 @@
 # Maximal Contiguous Subsequent Sum (MCSS) Problem / Interactive Algorithm Tool
 
 I originally wrote this web application back in 2010 for a job interview.
-It allows allows the user to enter Java code and have it evaluated in real-time 
+It allows the user to enter Java code and have it evaluated in real-time 
 without compilation.  BeanShell is used to evaluate Java code in a Struts2 based action.
 
 In addition, three common solutions may be loaded into the interactive Java 
@@ -26,8 +26,7 @@ To run the Docker image:
  # Note: You may need to change the port if 8080 is already in use.
 ```
 
-Once the Docker container is running you can launch the webapp at the following URL:
-
+Once the Docker container is running you can launch the webapp at the following URL:<br/>
 http://localhost:8080/mcss
 
 **WARNING: SCRIPTS EXECUTED IN THIS ENVIRONMENT HAVE FULL ACCESS TO SYSTEM RESOURCES!
