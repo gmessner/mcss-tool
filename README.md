@@ -9,6 +9,8 @@ code window, and the capability  for generating a populated int array that
 can be used as input for the Java code to be evaluated.  This allows the user
 to modify the Java code in real-time and test those modifications.
 
+![alt text](https://github.com/gmessner/mcss-tool/raw/master/mcss-screenshot.png "MCSS Tool Screenshot")
+
 To use this web application, simply drop the mcss.war file into you web 
 application server's deployment directory ((TOMCAT_HOME/webapps for Tomcat).
 
